@@ -18,7 +18,7 @@ This is a Python script that helps you find potential secrets in a GitHub reposi
 
 ## Usage
 
-To use the script, run the following command with the necessary arguments:
+To run a script that scans files in the repository for secrets, run the following command with the necessary arguments:
 
 ```bash
 python script_name.py -t <GITHUB_TOKEN> -o <REPO_OWNER> -r <REPO_NAME> [-p <REPO_PATH>] [-re <REGEX_PATTERN>] [-f <FILE_PATTERNS>]
