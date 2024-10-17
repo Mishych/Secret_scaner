@@ -1,0 +1,16 @@
+.*.py$
+.*\.env$
+.*\.yml$
+.*\.yaml$
+.*\.json$
+.*\.xml$
+.*\.ini$
+.*\.config$
+.*\.conf$
+.*\.properties$
+.*\.txt$
+.*\.sh$
+.*\.bash$
+.*\.zsh$
+.*\.bat$
+.*\.ps1$

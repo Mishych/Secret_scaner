@@ -1,0 +1,26 @@
+2024-10-17 14:40:15,385 - [+] No secrets found in .env
+2024-10-17 14:40:15,386 - [+] No secrets found in .env
+2024-10-17 14:40:15,386 - [+] No secrets found in .env
+2024-10-17 14:40:15,386 - [+] No secrets found in .env
+2024-10-17 14:40:15,395 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,395 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,395 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,396 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,396 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,396 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,397 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,397 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,397 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,398 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,399 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,399 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,400 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,400 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,401 - [+] No secrets found in .gitlab-ci.yml
+2024-10-17 14:40:15,403 - [+] No secrets found in filewithsecrets.py
+2024-10-17 14:40:15,403 - [+] No secrets found in filewithsecrets.py
+2024-10-17 14:40:15,405 - [+] No secrets found in scanning.py
+2024-10-17 14:40:15,405 - [+] No secrets found in scanning.py
+2024-10-17 14:40:15,436 - [+] No secrets found in dir/file.py
+2024-10-17 14:40:15,437 - [+] No secrets found in dir/file.py
+2024-10-17 14:40:15,447 - [+] Results saved to found_secrets.json
