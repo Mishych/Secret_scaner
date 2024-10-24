@@ -38,7 +38,7 @@ For example of running a file `detect_secrets_entropy.py`:
 python detect_secrets_entropy.py -r name/repo -p python_file.py -re '(AKIA|ASIA)[A-Z0-9]{16,}' 'AWS[A-Z0-9]{16,40}' --verbose
 ```
 
-In addition to searching file contents, the script can now also search for secrets in commit messages. Only the repository path (-r <REPO_PATH>) is required, while the other arguments are optional. To use this feature, run the following command:
+In addition to searching file contents, the script can now also search for secrets in commit messages. Only the repository path `(-r <REPO_PATH>)` is required, while the other arguments are optional. To use this feature, run the following command:
 
 ```bash
 python search_commits.py -r <REPO_PATH> [-re <REGEX_PATTERN>] [--verbose]
