@@ -224,22 +224,3 @@ if __name__ == "__main__":
     
 # found_files = find_files(directory_to_search, regexp_file) 
 # found_files = ["scanning.py", ".env"]
-    
-        
-        
-        
-# search_terms = "regex_patterns/key_words.csv"
-# if os.path.exists(search_terms):
-    
-#     with open(search_terms, "r", encoding="UTF-8") as f:
-#         keys = f.readlines()
-#         search_regexp = [re.compile(r'' + re.escape(term.strip()), re.IGNORECASE) for term in keys if term.strip()]
-# else:
-#     print(f"{fg('yellow')}[-] Search term is missing.{attr(0)}")
-#     exit(1)
-    
-# directory_to_search = r"C:\Users\..."  
-    
-# found_files = find_files(directory_to_search, regexp_file) 
-# found_files = ["scanning.py", ".env"]
-    
