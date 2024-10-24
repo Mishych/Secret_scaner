@@ -1,2 +1,3 @@
 aiohttp==3.9.3
 colored==2.2.4
+requests==2.31.0
