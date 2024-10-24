@@ -16,11 +16,9 @@ def get_commits(repo, verbose=False):
     
     if response.status_code == 200:
         if verbose:
-            print(f"Successfully fetched commits.")
-            
+            print(f"Successfully fetched commits.")  
         commits_list = []
         commits = response.json()
-        
         for commit in commits:
             commits_list.append(commit['commit']['message'])
         return commits_list
@@ -48,14 +46,12 @@ def find_commit_secrets(t_regexp, commits):
             if found_match:
                 output += f"\nSecrets found in commit: {commit}\n"
                 output += highlighted_line + "\n"
-        
         if not output:
             print(f"[+] No secrets found in commits")
 
     except Exception as e:
         error_message = f"[-] Error occurred while reading: {e}"
         print(f"{fg('red')}{error_message}{attr(0)}")
-
     return output
 
 def parse_arguments():
@@ -71,8 +67,7 @@ def main():
     args = parse_arguments()
       
     if args.verbose:
-        print("Verbose mode enabled.")
-      
+        print("Verbose mode enabled.") 
     if args.regex:
         t_regexp = [re.compile(reg, re.IGNORECASE) for reg in args.regex]
         
