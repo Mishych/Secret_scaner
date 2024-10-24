@@ -24,6 +24,11 @@ To run a script that scans files in the repository for secrets, use the followin
 python detect_secrets.py -r <REPO_PATH> [-p <FILE_PATH>] [-re <REGEX_PATTERN>] [--verbose]
 ```
 
+- `-r <REPO_PATH>`: Path to the GitHub repository.
+- `-p <FILE_PATH>`: (Optional) Specific file or directory to scan. If omitted, the entire repository will be scanned.
+- `-re <REGEX_PATTERN>`: (Optional) Custom regular expressions to search for secrets.
+- `--verbose`: (Optional) Enable detailed output.
+
 An example of running a file `detect_secrets.py`
 
 ```bash
