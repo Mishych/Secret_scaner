@@ -5,14 +5,16 @@ import requests
 import argparse
 
 
-def get_commits(repo, verbose=False):
+def get_commits(token, repo, verbose=False):
     """Gets commits from a GitHub repository using GitHub API"""
     url = f"https://api.github.com/repos/{repo}/commits"
-    
+    headers = {
+        'Authorization': f'token {token}'
+    }
     if verbose:
         print(f"Fetching commits from {repo}...")
 
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
         if verbose:
@@ -58,6 +60,7 @@ def parse_arguments():
     """Function for processing command-line arguments"""
     parser = argparse.ArgumentParser()
     parser.add_argument("-r", "--repo", required=True, help="Repository path")
+    parser.add_argument("-t", "--token", required=True, help="GitHub token for authentication")
     parser.add_argument("-re", "--regex", nargs="+", default=None, help="One or more regular expressions to search for secrets (optional)")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose output")
     return parser.parse_args()
@@ -84,7 +87,7 @@ def main():
             print(f"{fg('yellow')}[-] Search term is missing.{attr(0)}")
             exit(1)
             
-    commits = get_commits(args.repo, args.verbose)
+    commits = get_commits(args.token, args.repo, args.verbose)
             
     output = []
     results = find_commit_secrets(t_regexp, commits)
