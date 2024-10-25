@@ -12,13 +12,14 @@ import math
 logging.basicConfig(filename='scan_results.log', level=logging.INFO, 
                     format='%(asctime)s - %(message)s', filemode='w')
 
-async def get_file_content(repo, path, verbose=False):
+async def get_file_content(token, repo, path, verbose=False):
     """Function for retrieving the content of files from GitHub"""
     url = f"https://api.github.com/repos/{repo}/contents/{path}"
+    headers = {"Authorization": f"token {token}"}
     if verbose:
         print(f"Fetching file content from: {path}")
     
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession(headers=headers) as session:
         async with session.get(url) as response:
             if response.status == 200:
                 data = await response.json()
@@ -112,14 +113,18 @@ def find_files(directory, files_pattern):
     return matches
 
 
-async def find_files_github(repo, path, files_pattern, verbose=False):
+async def find_files_github(token, repo, path, files_pattern, verbose=False):
     """Searching for matching files in the GitHub repository"""
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
     url = f"https://api.github.com/repos/{repo}/contents/{path}"
     
     if verbose:
         print(f"Fetching contents from {url}...")
 
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession(headers=headers) as session:
         async with session.get(url) as response:
             if response.status != 200:
                 print(f"Failed to fetch contents from {url}: {response.status}")
@@ -146,7 +151,7 @@ async def find_files_github(repo, path, files_pattern, verbose=False):
                                     print(f"File matching pattern found: {filename}")
                                 matches.append(content['path'])
                     elif content['type'] == 'dir':
-                        tasks.append(find_files_github(repo, content['path'], files_pattern, verbose))
+                        tasks.append(find_files_github(token, repo, content['path'], files_pattern, verbose))
                 subdir_matches = await asyncio.gather(*tasks)
                 for subdir_match in subdir_matches:
                     matches.extend(subdir_match)
@@ -174,6 +179,7 @@ def parse_arguments():
     """Function for processing command-line arguments"""
     parser = argparse.ArgumentParser(description="GitHub Secret Finder")
     parser.add_argument("-r", "--repo", required=True, help="Repository path")
+    parser.add_argument("-t", "--token", required=True, help="GitHub token for authentication")
     parser.add_argument("-p", "--path", default="", help="Path in the repository to search (optional)")
     parser.add_argument("-re", "--regex", nargs="+", default=None, help="One or more regular expressions to search for secrets (optional)")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose output")
@@ -213,7 +219,7 @@ async def main():
         print(f"{fg('yellow')}[-] File {search_file} is missing.{attr(0)}")
         exit(1)
         
-    found_files = await find_files_github(args.repo, args.path, regexp_file, args.verbose)
+    found_files = await find_files_github(args.token, args.repo, args.path, regexp_file, args.verbose)
     if not found_files:
         print(f"{fg('yellow')}[-] No files found.{attr(0)}")
         exit(1)
@@ -222,7 +228,7 @@ async def main():
     task = []
     
     for file in found_files:
-        task.append(get_file_content(args.repo, file, args.verbose))
+        task.append(get_file_content(args.token, args.repo, file, args.verbose))
     
     contents = await asyncio.gather(*task)
     
