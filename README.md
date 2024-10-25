@@ -21,10 +21,11 @@ This is a Python script that helps you find potential secrets in a GitHub reposi
 To run a script that scans files in the repository for secrets, use the following command. Only the repository path `(-r <REPO_PATH>)` is required, while the other arguments are optional:
 
 ```bash
-python detect_secrets.py -r <REPO_PATH> [-p <FILE_PATH>] [-re <REGEX_PATTERN>] [--verbose]
+python detect_secrets.py -r <REPO_PATH> -t <GITHUB_TOKEN> [-p <FILE_PATH>] [-re <REGEX_PATTERN>] [--verbose]
 ```
 
 - `-r <REPO_PATH>`: Path to the GitHub repository.
+- `-t <GITHUB_TOKEN>`: GitHub token for authentication
 - `-p <FILE_PATH>`: (Optional) Specific file or directory to scan. If omitted, the entire repository will be scanned.
 - `-re <REGEX_PATTERN>`: (Optional) Custom regular expressions to search for secrets.
 - `--verbose`: (Optional) Enable detailed output.
@@ -32,7 +33,7 @@ python detect_secrets.py -r <REPO_PATH> [-p <FILE_PATH>] [-re <REGEX_PATTERN>] [
 An example of running a file `detect_secrets.py`
 
 ```bash
-python detect_secrets.py -r name/repo -p python_file.py -re '(AKIA|ASIA)[A-Z0-9]{16,}' 'AWS[A-Z0-9]{16,40}' --verbose
+python detect_secrets.py -r name/repo -t ghp_........ -p python_file.py -re '(AKIA|ASIA)[A-Z0-9]{16,}' 'AWS[A-Z0-9]{16,40}' --verbose
 ```
 
 The detect_secrets_entropy.py script combines entropy analysis with regular expressions to identify potential secrets. You can run `detect_secrets_entropy.py` with the same arguments as used for `detect_secrets.py`.
@@ -40,17 +41,17 @@ The detect_secrets_entropy.py script combines entropy analysis with regular expr
 For example of running a file `detect_secrets_entropy.py`:
 
 ```bash
-python detect_secrets_entropy.py -r name/repo -p python_file.py -re '(AKIA|ASIA)[A-Z0-9]{16,}' 'AWS[A-Z0-9]{16,40}' --verbose
+python detect_secrets_entropy.py -r name/repo -t ghp_........ -p python_file.py -re '(AKIA|ASIA)[A-Z0-9]{16,}' 'AWS[A-Z0-9]{16,40}' --verbose
 ```
 
 In addition to searching file contents, the script can now also search for secrets in commit messages. Only the repository path `(-r <REPO_PATH>)` is required, while the other arguments are optional. To use this feature, run the following command:
 
 ```bash
-python search_commits.py -r <REPO_PATH> [-re <REGEX_PATTERN>] [--verbose]
+python search_commits.py -r <REPO_PATH> -t <GITHUB_TOKEN> [-re <REGEX_PATTERN>] [--verbose]
 ```
 
 For example of running a file `search_commits.py`:
 
 ```bash
-python search_commits.py -r name/repo -re '(AKIA|ASIA)[A-Z0-9]{16,}' 'AWS[A-Z0-9]{16,40}' --verbose
+python search_commits.py -r name/repo -t ghp_........ -re '(AKIA|ASIA)[A-Z0-9]{16,}' 'AWS[A-Z0-9]{16,40}' --verbose
 ```
