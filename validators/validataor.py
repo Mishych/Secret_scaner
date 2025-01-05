@@ -5,13 +5,13 @@ from botocore.exceptions import NoCredentialsError, PartialCredentialsError
 
 class SecretValidator:
     """
-    Клас для перевірки різних типів секретів.
+    A class for checking different types of secrets.
     """
     
     @staticmethod
     def validate_github_token(token: str):
         """
-        Перевіряє валідність GitHub токена.
+        Checks the validity of the GitHub token.
         """
         headers = {"Authorization": f"token {token}"}
         response = requests.get("https://api.github.com/user", headers=headers)
@@ -23,7 +23,7 @@ class SecretValidator:
     @staticmethod
     def validate_aws_keys(access_key, secret_key):
         """
-        Перевіряє валідність AWS ключів доступу.
+        Checks the validity of AWS access keys.
         """
         try:
             session = boto3.Session(aws_access_key_id=access_key, aws_secret_access_key=secret_key)
@@ -35,7 +35,7 @@ class SecretValidator:
     @staticmethod
     def validate_slack_token(token: str):
         """
-        Перевіряє валідність Slack токена і виводить результат.
+        Checks the validity of the Slack token.
         """
         response = requests.get("https://slack.com/api/auth.test", headers={"Authorization": f"Bearer {token}"})
         if response.status_code == 200 and response.json().get("ok"):
@@ -46,7 +46,7 @@ class SecretValidator:
     @staticmethod   
     def validate_google_api_key(api_key: str) -> str:
         """
-        Перевіряє валідність Google API Key.
+        Checks the validity of the Google API Key.
         """
         # URL для тестового запиту (наприклад, Geocoding API)
         test_url = "https://maps.googleapis.com/maps/api/geocode/json"
