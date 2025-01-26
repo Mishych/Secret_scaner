@@ -48,10 +48,9 @@ class SecretValidator:
         """
         Checks the validity of the Google API Key.
         """
-        # URL для тестового запиту (наприклад, Geocoding API)
         test_url = "https://maps.googleapis.com/maps/api/geocode/json"
         params = {
-            "address": "New York",  # Тестова адреса
+            "address": "New York",
             "key": api_key
         }
 
@@ -59,7 +58,6 @@ class SecretValidator:
             response = requests.get(test_url, params=params)
             if response.status_code == 200:
                 data = response.json()
-                # Перевіряємо, чи є помилка, пов'язана з API Key
                 if "error_message" in data:
                     return f"INVALID: {data['error_message']}"
                 else:
